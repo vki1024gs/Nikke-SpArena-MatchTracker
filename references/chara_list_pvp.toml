@@ -1,0 +1,632 @@
+# 字段说明：name(中文全名), burst(爆发阶段), mechanics(机制信号), ...
+
+[[characters]]
+name = "尼恩：透视之眼"
+burst = "3"
+weapon = ""
+mechanics = ["无敌：首次受到伤害马上3s无敌"]
+code = ""
+defensive_tier = "A"
+offensive_tier = "S"
+champion_tier = "A"
+cube_recommendation = "减伤"
+pvp_role = "首次受到伤害马上3s无敌+输出"
+notes = "充能太低了，3s无敌开发起来有点尴尬。自己开爆裂后输出很不错，有小贝斯蒂的美感，但不开爆裂和贝斯蒂没得比。"
+
+[[characters]]
+name = "普丽瓦蒂"
+burst = "3"
+weapon = ""
+mechanics = []
+variant = "珍藏品"
+code = ""
+defensive_tier = "C"
+offensive_tier = "B"
+champion_tier = "B"
+cube_recommendation = "减伤"
+pvp_role = "全体眩晕+攻击增益"
+notes = "辅助控场"
+
+[[characters]]
+name = "豺狼"
+burst = "1"
+weapon = ""
+mechanics = []
+code = ""
+defensive_tier = "S"
+offensive_tier = "S"
+champion_tier = "S"
+cube_recommendation = "减伤/充能"
+pvp_role = "充能辅助/队伍生存"
+notes = "辅助能力天花板，充能机制独一档，链接机制分摊伤害加强主C生存，是每一个队伍都梦寐以求的队友"
+
+[[characters]]
+name = "阿妮斯：超级巨星"
+burst = "1"
+weapon = ""
+mechanics = []
+code = ""
+defensive_tier = "EX"
+offensive_tier = "EX"
+champion_tier = "EX"
+cube_recommendation = "补弹、蓄速"
+pvp_role = "充能+高伤害主C"
+notes = "竞技场新神，左手充能高右手高伤害，18速才能防美人鱼晕眩"
+
+[[characters]]
+name = "诺伊斯"
+burst = "1"
+weapon = ""
+mechanics = []
+code = ""
+defensive_tier = "A"
+offensive_tier = "A"
+champion_tier = "A"
+cube_recommendation = "减伤"
+pvp_role = "回血+嘲讽+全队增伤"
+notes = "自身具有回血生存能力，配合嘲讽机制逻辑自洽，爆裂开启后全队血量1.5倍放大应对核爆，减伤技能在目前版本非常有用，在灰姑娘登场后更具有给灰姑娘增伤的作用"
+
+[[characters]]
+name = "罗姗娜"
+burst = "1"
+weapon = ""
+mechanics = []
+code = ""
+defensive_tier = "A"
+offensive_tier = "A"
+champion_tier = "S"
+cube_recommendation = "减伤（抗红莲反击）"
+pvp_role = "消除buff+伤害型爆裂1"
+notes = "众多独特机制的集合体，消除对方buff能有效应对豺狼链接，单人抹杀2B的构筑可能，献祭充能机制与圣诞安妮、玛娜等有良好配合，稀有的伤害型爆裂1"
+
+[[characters]]
+name = "牡丹"
+burst = "1"
+weapon = ""
+mechanics = []
+variant = "珍藏品"
+code = ""
+defensive_tier = "S"
+offensive_tier = "S"
+champion_tier = "S"
+cube_recommendation = "减伤"
+pvp_role = "全队减伤+加攻"
+notes = "提供最多的全队减伤数值，为全队提供最强的生存环境，珍藏品后全队加攻如虎添翼，不考虑充能的话竞技场最强1号位"
+
+[[characters]]
+name = "小红帽"
+burst = "X"
+weapon = ""
+mechanics = []
+code = ""
+defensive_tier = "A"
+offensive_tier = "A"
+champion_tier = "S"
+cube_recommendation = "减伤/任意"
+pvp_role = "攻击力buff+灭团爆发"
+notes = "作为一号位提供最多的攻击力buff，在摇摆位置开爆裂3也极强的灭团能力，流行的娜由塔海伦帽队伍中提供超强buff，至少需要一条5%的蓄速词条"
+
+[[characters]]
+name = "鲁玛妮"
+burst = "1"
+weapon = ""
+mechanics = []
+code = ""
+defensive_tier = "A"
+offensive_tier = "A"
+champion_tier = "S"
+cube_recommendation = "充能/蓄力速度"
+pvp_role = "高充能+嘲讽"
+notes = "充能极高，只要竞技场机制不变就不会下岗，开启全爆裂后必定嘲讽配合饼干可以防吸血，蓄力速度在灰姑娘诺雅配队中有决定性作用，比较稀有的高充能爆裂1"
+
+[[characters]]
+name = "长发公主"
+burst = "1"
+weapon = ""
+mechanics = []
+code = ""
+defensive_tier = "A"
+offensive_tier = "A"
+champion_tier = "A"
+cube_recommendation = "减伤/体力"
+pvp_role = "回血+复活+晕眩"
+notes = "拥有常态回血和复活机制，曾经生存队的代表人物，目前增伤端爆表使得生存处境艰难，30%血以下发动晕眩可以摸奖"
+
+[[characters]]
+name = "小美人鱼"
+burst = "1"
+weapon = ""
+mechanics = []
+code = ""
+defensive_tier = "B"
+offensive_tier = "A"
+champion_tier = "A"
+cube_recommendation = "减伤（抗红莲反击）"
+pvp_role = "单体晕眩"
+notes = "在竞技场不依赖任何技能等级和装备词条，又快又稳的单体晕眩在进攻端和冠军竞技场有着出色发挥，12月21日暗改转身2帧的最大受害者"
+
+[[characters]]
+name = "索林：霜之旅票"
+burst = "1"
+weapon = ""
+mechanics = []
+code = ""
+defensive_tier = "D"
+offensive_tier = "D"
+champion_tier = "B"
+cube_recommendation = "减伤"
+pvp_role = "霰弹针对（冠军场专用）"
+notes = "冠军场针对霰弹有一定的防守能力，但对整体队伍的氪度要求非常高，本质就是15%血量的发动界限非常苛刻，不是PVP卡硬被氪佬强行上冠军场"
+
+[[characters]]
+name = "艾玛：战术升级"
+burst = "1"
+weapon = ""
+mechanics = []
+code = ""
+defensive_tier = "D"
+offensive_tier = "C"
+champion_tier = "A"
+cube_recommendation = "减伤"
+pvp_role = "特种部队核心（冠军场专用）"
+notes = "冠军竞技场专用，特种部队核心成员"
+
+[[characters]]
+name = "蕾贝儿"
+burst = "1"
+weapon = ""
+mechanics = []
+code = ""
+defensive_tier = "C"
+offensive_tier = "A"
+champion_tier = "A"
+cube_recommendation = "减伤/任意"
+pvp_role = "电击属性减伤+红莲counter"
+notes = "开局直接电击属性减伤70%的设计，红莲及其体系卡一并成为最大受害者"
+
+[[characters]]
+name = "诺雅"
+burst = "2"
+weapon = ""
+mechanics = ["无敌：全队无敌"]
+code = ""
+defensive_tier = "S"
+offensive_tier = "S"
+champion_tier = "S"
+cube_recommendation = "减伤/充能/蓄力速度"
+pvp_role = "全队无敌+嘲讽"
+notes = "曾经无可争议的二号位最强者，无敌加嘲讽的能力使队伍的整体防御面非常广，与饼干的组合在攻防两端都非常亮眼，减伤技能更是锦上添花，现在贝斯蒂、白雪都可以绕开诺雅打击，逐渐走下神坛"
+
+[[characters]]
+name = "特蕾娜"
+burst = "2"
+weapon = ""
+mechanics = []
+code = ""
+defensive_tier = "A"
+offensive_tier = "A"
+champion_tier = "A"
+cube_recommendation = "充能/蓄力速度，电击AR入场短无敌"
+pvp_role = "充能位（绑定红莲）"
+notes = "充能极高，极大地提高了红莲的斩杀线，因高度绑定红莲，现在就是一个纯粹充能位"
+
+[[characters]]
+name = "饼干"
+burst = "2"
+weapon = ""
+mechanics = ["无敌：队里防御型2次5秒无敌"]
+code = ""
+defensive_tier = "S"
+offensive_tier = "A"
+champion_tier = "S"
+cube_recommendation = "减伤/体力"
+pvp_role = "队里防御型2次5秒无敌"
+notes = "使防御型可以拥有2次5秒无敌的能力独一无二，搭配泛用度极高。建议提高饼干的生存使之有充分时间释放2次无敌技能。"
+
+[[characters]]
+name = "布兰儿"
+burst = "2"
+weapon = ""
+mechanics = ["不屈"]
+code = ""
+defensive_tier = "S"
+offensive_tier = "S"
+champion_tier = "S"
+cube_recommendation = "减伤/体力"
+pvp_role = "不屈+易伤"
+notes = "定向给不屈的能力非常适合搭配高练度的主C在10s爆裂时间内解决战斗，而高贵的易伤也可以有效抵消对方的减伤能力，在生存和输出方面都能有出色发挥"
+
+[[characters]]
+name = "贝伊"
+burst = "2"
+weapon = ""
+mechanics = []
+variant = "珍藏品"
+code = ""
+defensive_tier = "A"
+offensive_tier = "B"
+champion_tier = "A"
+cube_recommendation = "体力"
+pvp_role = "分摊承伤+奶人"
+notes = "珍藏品后拥有了奶人能力，且不怕掩体在爆裂前损毁解放了站位限制，分摊机制极其优秀，即使没有掩体也可承伤全队40%从而保护C位，配合饼干进一步提升生存"
+
+[[characters]]
+name = "毒蛇"
+burst = "2"
+weapon = ""
+mechanics = []
+code = ""
+defensive_tier = "C"
+offensive_tier = "B"
+champion_tier = "B"
+cube_recommendation = "减伤/任意"
+pvp_role = "快充霰弹+高优越"
+notes = "二号位中快充霰弹，冠军场高优越可以针对尼罗，目前3阶影响不大"
+
+[[characters]]
+name = "娜由塔"
+burst = "2"
+weapon = ""
+mechanics = ["不屈：自身不屈"]
+code = ""
+defensive_tier = "S"
+offensive_tier = "S"
+champion_tier = "S"
+cube_recommendation = "治疗/体力"
+pvp_role = "自身不屈，必定开爆裂增伤+超速主C"
+notes = "几乎必定可以开出爆裂技能的增伤2号位，对霰弹克制，充能低不屈9s开局就倒计时，目前超速娜由塔海伦队伍中核心C，注意攻击太高会被罗姗娜消除不屈"
+
+[[characters]]
+name = "桑迪"
+burst = "2"
+weapon = ""
+mechanics = []
+variant = "珍藏品"
+code = ""
+defensive_tier = "A"
+offensive_tier = "A"
+champion_tier = "A"
+cube_recommendation = "充能/蓄力速度"
+pvp_role = "充能+群体奶"
+notes = "大概每6RL就有一口全体9%的奶，在贝伊饼干队伍中极强"
+
+[[characters]]
+name = "银华：战术升级"
+burst = "2"
+weapon = ""
+mechanics = []
+code = ""
+defensive_tier = "D"
+offensive_tier = "C"
+champion_tier = "A"
+cube_recommendation = "减伤"
+pvp_role = "特种部队核心（冠军场专用）"
+notes = "冠军竞技场专用，特种部队核心成员"
+
+[[characters]]
+name = "马斯特"
+burst = "2"
+weapon = ""
+mechanics = []
+code = ""
+defensive_tier = "D"
+offensive_tier = "C"
+champion_tier = "A"
+cube_recommendation = "减伤"
+pvp_role = "特种部队+贝斯蒂增益（冠军场专用）"
+notes = "冠军竞技场专用，特种部队成员，给贝斯蒂加暴击率，高练的话还有爆伤"
+
+[[characters]]
+name = "红莲"
+burst = "3"
+weapon = ""
+mechanics = []
+code = ""
+defensive_tier = "C"
+offensive_tier = "A"
+champion_tier = "B"
+cube_recommendation = "减伤"
+pvp_role = "反击判定+AOE"
+notes = "曾经竞技场的判官，反击机制决定了判官地位，和豺狼组合更是变本加厉，AOE伤害在特蕾娜到来后又迎来春天，30-32弹最优，目前蕾贝儿出现，不要练红莲了"
+
+[[characters]]
+name = "贝斯蒂：战术升级"
+burst = "3"
+weapon = ""
+mechanics = []
+code = ""
+defensive_tier = "S"
+offensive_tier = "S"
+champion_tier = "S"
+cube_recommendation = "减伤/换弹"
+pvp_role = "持续暴力输出主C"
+notes = "持续性的暴力输出，在任何配队中都有亮眼表现，词条方面2个流派，氪佬4攻4-6暴2-4优，平民4攻1速（5%）2-3弹（20弹）+N优，目前环境优越高打水母和白兔有利"
+
+[[characters]]
+name = "海伦"
+burst = "3"
+weapon = ""
+mechanics = []
+variant = "珍藏品"
+code = ""
+defensive_tier = "S"
+offensive_tier = "S"
+champion_tier = "S"
+cube_recommendation = "蓄力速度/减伤"
+pvp_role = "充能+单点点杀+奶C辅"
+notes = "为了售卖转盘皮肤而脚填充能数值的代表人物，位列珍藏品第一人，1阶即可当充能位使用，3阶解锁主C能力，极高的单点点杀倍率，能奶能C能辅的六边形战士"
+
+[[characters]]
+name = "爱蜜莉雅"
+burst = "3"
+weapon = ""
+mechanics = []
+code = ""
+defensive_tier = "A"
+offensive_tier = "A"
+champion_tier = "A"
+cube_recommendation = "减伤/充能/蓄速"
+pvp_role = "延时核爆主C"
+notes = "伤害极高的核爆主件，延时对付诺雅极佳，充能极高自带蓄力速度配合词条可进一步提速，2弹词条可在全爆裂期不换弹适合白兔的构筑体系，蓄速小于等于18-20%避开红莲特雷娜的无敌，优越可针对新贝斯蒂"
+
+[[characters]]
+name = "拉普拉斯"
+burst = "3"
+weapon = ""
+mechanics = []
+variant = "珍藏品"
+code = ""
+defensive_tier = "A"
+offensive_tier = "A"
+champion_tier = "A"
+cube_recommendation = "减伤/任意"
+pvp_role = "高充能副C"
+notes = "升级为珍藏品加之BUG修正后充能极高，普攻伤害高，可以进任何队伍作为副C使用，蓄速建议小于等于15-17%（12月21日因暗改转身2帧目前是11-14%）以避开红莲特雷娜的无敌"
+
+[[characters]]
+name = "梅登：冰玫瑰"
+burst = "3"
+weapon = ""
+mechanics = []
+code = ""
+defensive_tier = "A"
+offensive_tier = "A"
+champion_tier = "A"
+cube_recommendation = "减伤/任意"
+pvp_role = "高充能副C+溅射"
+notes = "充能较高，普攻附加伤害高，开爆裂后攻击力大增溅射伤害也非常可观，防御型可避免各种点名、控不屈和豺狼链接，优秀的副C，目前充能位很多，优先度有些下降"
+
+[[characters]]
+name = "灰姑娘"
+burst = "3"
+weapon = ""
+mechanics = []
+code = ""
+defensive_tier = "A"
+offensive_tier = "A"
+champion_tier = "A"
+cube_recommendation = "体力/任意"
+pvp_role = "AOE副C+诱饵"
+notes = "充能严重下毒，AOE伤害非常暴力，但出伤有延迟容易被无敌挡住，作为副C使用进入爆裂期后也拥有极强的攻击力和生存能力，可稳定吸引水阿的攻击，诱饵机制独一档"
+
+[[characters]]
+name = "德雷克"
+burst = "3"
+weapon = ""
+mechanics = []
+variant = "珍藏品"
+code = ""
+defensive_tier = "C"
+offensive_tier = "B"
+champion_tier = "A"
+cube_recommendation = "减伤/任意"
+pvp_role = "快充霰弹+副C击杀"
+notes = "德雷克、兔索达、黑兔、舒格等一并评价，快充霰弹，高充能，高练在防守中对于进攻方P5的威胁非常大，作为副C根据优越属性进行调配在攻防中都有极强的击杀能力"
+
+[[characters]]
+name = "白雪公主：重型武装"
+burst = "3"
+weapon = ""
+mechanics = []
+code = ""
+defensive_tier = "S"
+offensive_tier = "S"
+champion_tier = "S"
+cube_recommendation = "减伤/任意"
+pvp_role = "充能GOAT+平滑全体输出"
+notes = "充能史上第一GOAT，爆裂期伤害极高，攻击全体且输出平滑无溢出，延时持续出伤可对付诺雅，EMT的完全上位，词条又十分友好，突破也非必须"
+
+[[characters]]
+name = "艾达"
+burst = "3"
+weapon = ""
+mechanics = []
+code = ""
+defensive_tier = "A"
+offensive_tier = "B"
+champion_tier = "A"
+cube_recommendation = "减伤/体力"
+pvp_role = "全爆裂加成回血"
+notes = "全爆裂加成的适格者有新贝斯蒂、新白雪、爱因三人，回血能力给这些持续性伤害C也都有很好的作用，先前被低估的角色"
+
+[[characters]]
+name = "莉贝雷利奥"
+burst = "3"
+weapon = ""
+mechanics = []
+code = ""
+defensive_tier = "B"
+offensive_tier = "B"
+champion_tier = "A"
+cube_recommendation = "蓄速/充能/减伤"
+pvp_role = "高充能核爆延迟出伤"
+notes = "充能高，核爆伤害第一人，但延时1s出伤至毒之极，4攻4优可以单人就切掉长发，10%速的水母第二枪可以比21速海伦第三枪快，18%第二枪是标准2RL（网传），21%确定比2RL快，尽量优先18速"
+
+[[characters]]
+name = "米哈拉：羁绊锁链"
+burst = "3"
+weapon = ""
+mechanics = []
+code = ""
+defensive_tier = "B"
+offensive_tier = "B"
+champion_tier = "B"
+cube_recommendation = "任意"
+pvp_role = "DOT毒伤"
+notes = "因慢速灰姑娘而出彩的角色，靠高额的DOT毒打天下，不吃任何词条"
+
+[[characters]]
+name = "阿妮斯：闪耀夏日"
+burst = "1"
+weapon = ""
+mechanics = []
+code = ""
+defensive_tier = "B"
+offensive_tier = "B"
+champion_tier = "B"
+cube_recommendation = "换弹"
+pvp_role = "绕开嘲讽攻击+攻击力buff"
+notes = "非常优秀的绕开嘲讽的攻击机制，自身也提供了高额的攻击力buff，需要配置双嘲讽或针对性调整最高攻击力才可封印，贝斯蒂来了不知道还有什么用（时代眼泪）"
+
+[[characters]]
+name = "红莲：暗影"
+burst = "3"
+weapon = ""
+mechanics = []
+code = ""
+defensive_tier = "B"
+offensive_tier = "B"
+champion_tier = "B"
+cube_recommendation = "减伤/任意"
+pvp_role = "持续AOE"
+notes = "拥有非常强的持续AOE打击能力，面对无敌嘲讽和樱花无法出伤是其防守短板，但练度高的情况下只有诺雅饼干才能匹敌，贝斯蒂来了不知道还有什么用（时代眼泪）"
+
+[[characters]]
+name = "基里"
+burst = "1"
+weapon = ""
+mechanics = []
+code = ""
+defensive_tier = "B"
+offensive_tier = "C"
+champion_tier = "B"
+cube_recommendation = "减伤"
+pvp_role = "牡丹队最大血量增益"
+notes = "牡丹队早期成员，给牡丹和尼罗提供10%的最大血量，其他匹配度一般"
+
+[[characters]]
+name = "皇冠"
+burst = "2"
+weapon = ""
+mechanics = []
+code = ""
+defensive_tier = "D"
+offensive_tier = "B"
+champion_tier = "D"
+cube_recommendation = "减伤/任意"
+pvp_role = "新人凑战力+增伤"
+notes = "由于枪种和充能很差在防守端是突破口，唯一优势是进攻时新人兼顾PVE凑战力、配合水阿尼斯或爱蜜莉雅的增伤"
+
+[[characters]]
+name = "佩珀"
+burst = "1"
+weapon = ""
+mechanics = []
+code = ""
+defensive_tier = "C"
+offensive_tier = "C"
+champion_tier = "B"
+cube_recommendation = "减伤/充能/任意"
+pvp_role = "一号位快充霰弹（新人过渡）"
+notes = "一号位中快充霰弹，对于新人缺BOX可以当充能位使用，集合多个风属性霰弹对于铁甲具有毁灭性的打击能力"
+
+[[characters]]
+name = "安妮：奇迹仙女"
+burst = "3"
+weapon = ""
+mechanics = []
+code = ""
+defensive_tier = "B"
+offensive_tier = "B"
+champion_tier = "B"
+cube_recommendation = "减伤"
+pvp_role = "全爆裂加成回血"
+notes = "全爆裂加成适格者之一"
+
+[[characters]]
+name = "阿妮斯"
+burst = "1"
+weapon = ""
+mechanics = []
+code = ""
+defensive_tier = "B"
+offensive_tier = "B"
+champion_tier = "B"
+cube_recommendation = "减伤"
+pvp_role = "爆裂1充能+输出"
+notes = "SR阿妮斯"
+
+[[characters]]
+name = "玛娜"
+burst = "1"
+weapon = ""
+mechanics = []
+code = ""
+defensive_tier = "B"
+offensive_tier = "B"
+champion_tier = "B"
+cube_recommendation = "减伤"
+pvp_role = "充能辅助"
+notes = "特种部队"
+
+[[characters]]
+name = "丽塔"
+burst = "2"
+weapon = ""
+mechanics = []
+code = ""
+defensive_tier = "B"
+offensive_tier = "B"
+champion_tier = "B"
+cube_recommendation = "减伤"
+pvp_role = "充能辅助"
+notes = "特种部队"
+
+[[characters]]
+name = "波莉"
+burst = "2"
+weapon = ""
+mechanics = []
+code = ""
+defensive_tier = "B"
+offensive_tier = "B"
+champion_tier = "B"
+cube_recommendation = "减伤"
+pvp_role = "充能辅助"
+notes = "特种部队"
+
+[[characters]]
+name = "尼罗"
+burst = "3"
+weapon = ""
+mechanics = []
+code = ""
+defensive_tier = "B"
+offensive_tier = "B"
+champion_tier = "B"
+cube_recommendation = "减伤"
+pvp_role = "副C"
+notes = "特种部队"
+
+[[characters]]
+name = "索达"
+burst = "2"
+weapon = ""
+mechanics = []
+code = ""
+defensive_tier = "B"
+offensive_tier = "B"
+champion_tier = "B"
+cube_recommendation = "减伤"
+pvp_role = "充能辅助"
+notes = "特种部队"

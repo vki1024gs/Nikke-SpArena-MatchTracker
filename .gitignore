@@ -1,0 +1,8 @@
+sub-skills/match_maintain/validators/.tmp/
+.archive/
+data/
+.old/
+__pycache__/
+*.pyc
+*.egg-info/
+dist/

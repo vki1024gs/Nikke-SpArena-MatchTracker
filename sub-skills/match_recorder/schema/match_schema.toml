@@ -1,0 +1,98 @@
+# match_schema.toml — 数据表结构定义
+[meta]
+version = "2.0"
+description = "NIKKE PVP 对局数据标准格式 (Modern/Structured)"
+
+# ── 基础元数据 ──────────────────────────────────────────────
+[fields.id]
+type = "string"
+required = true
+max_length = 4
+pattern = "^[0-9]+$"
+order = 1
+
+[fields.date]
+type = "date"
+required = true
+format = "YYYY-MM-DD"
+order = 2
+
+[fields.source]
+type = "enum"
+required = true
+enum_values = ["论坛", "自建", "其他"]
+order = 3
+
+# ── 队伍构成 ──────────────────────────────────────────────
+[fields.defender_team]
+type = "array"
+required = true
+item_type = "string"
+min_items = 5
+max_items = 5
+order = 4
+
+[fields.attacker_team]
+type = "array"
+required = true
+item_type = "string"
+min_items = 5
+max_items = 5
+order = 5
+
+# ── 爆裂链（核心改进：结构化 Map） ─────────────────────
+[fields.defender_burst]
+type = "map"
+required = true
+keys = ["B1", "B2", "B3"]
+value_type = "array[string]"
+order = 6
+
+[fields.attacker_burst]
+type = "map"
+required = true
+keys = ["B1", "B2", "B3"]
+value_type = "array[string]"
+order = 7
+
+# ── 对局结果 ──────────────────────────────────────────────
+[fields.result]
+type = "enum"
+required = true
+enum_values = ["attacker_win", "defender_win"]
+order = 8
+
+[fields.margin]
+type = "enum"
+required = true
+default = "unknown"
+enum_values = ["unknown", "close", "decisive"]
+order = 9
+
+[fields.trust]
+type = "enum"
+required = false
+default = "medium"
+enum_values = ["low", "medium", "high"]
+order = 10
+
+[fields.custom_def_tag]
+type = "string"
+required = false
+default = ""
+max_length = 50
+order = 11
+
+# ── 上传者标签（记录者标识） ─────────────────────────────
+[fields.uploader_tag]
+type = "string"
+required = false
+default = "dev"
+max_length = 50
+order = 12
+
+[fields.notes]
+type = "text"
+required = false
+default = ""
+order = 13
