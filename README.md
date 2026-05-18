@@ -48,17 +48,7 @@ python3 sub-skills/match_recorder/match_recorder.py \
 
 - **Data format**: TOML (single data source, `matches.toml`)
 - **Runtime**: Python 3.13+ (executed within Claude Agent skills)
-- **Matching**: weighted scoring — roster overlap (60) + burst chain match (30) + order match (10)
 
-## Match Scoring
-
-| Dimension | Max | Details |
-|-----------|-----|---------|
-| Roster Overlap | 60 | 5 members=60, 4=48, 3=36 |
-| Burst Chain Match | 30 | All 3 chains match=30, 2=20, 1=10 |
-| Exact Order Match | 10 | Same 5 members in same order |
-
-Max score: 100. Below 50 = no meaningful match.
 
 ## License
 
