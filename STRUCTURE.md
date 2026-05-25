@@ -17,8 +17,7 @@ nikke-pvp/
 │   └── matches.toml                  # 对局数据库（主数据，追加模式）
 │
 ├── references/                       # 参考数据（只读）
-│   ├── chara_list_pvp.toml           # 角色全名 + 爆裂等级 + 武器类型
-│   └── charge_speed_pvp.toml         # 角色充能速度数据
+│   └── characters_pvp.toml           # 角色资料 + charge_2RL/charge_50SMG/charge_3RL 充能数据
 │
 ├── scripts/                          # 通用脚本（所有子技能共享）
 │   ├── common.py                     # 公共模块：配置加载、数据读取、工具函数

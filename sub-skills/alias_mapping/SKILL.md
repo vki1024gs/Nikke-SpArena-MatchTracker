@@ -10,7 +10,7 @@ description: 将角色昵称串解析为5人全名，支持贪婪最长匹配、
 
 ## 文件结构
 - `SKILL.md` — 流程定义
-- `alias_mapping.py` — 解析脚本（自包含，直接读同目录 `alias_mapping_pvp.toml`）
+- `alias_mapping.py` — 解析脚本（通过根目录 `scripts/common.py` 读取 `config.toml` 中的 alias 映射路径）
 - `alias_mapping_pvp.toml` — 别名数据
 
 ## Workflow

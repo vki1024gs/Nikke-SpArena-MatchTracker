@@ -34,7 +34,7 @@ def get_next_id(matches_path: Path) -> int:
 def resolve_team(nickname_str: str) -> list[str]:
     """调用 alias_mapping 解析队伍全名，失败时 exit(1)。"""
     cleaned = alias_mapping.clean_input(nickname_str)
-    amap, fnames = alias_mapping.build_alias_map(alias_mapping.TOML_PATH)
+    amap, fnames = alias_mapping.build_alias_map()
     names, _, warns = alias_mapping.resolve(cleaned, amap, fnames)
 
     for w in warns:

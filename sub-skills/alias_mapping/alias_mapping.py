@@ -4,15 +4,11 @@ import json
 import re
 from pathlib import Path
 
-TOML_PATH = Path(__file__).resolve().parent / "alias_mapping_pvp.toml"
+ROOT = Path(__file__).resolve().parent.parent.parent
+sys.path.insert(0, str(ROOT / "scripts"))
+from common import alias_map as load_alias_map, fullnames
 
 CLEAN_RE = re.compile(r'[^\w一-鿾：:]')
-
-# --- tomllib 兼容 ---
-if sys.version_info >= (3, 11):
-    import tomllib
-else:
-    import tomli as tomllib
 
 
 def clean_input(raw: str) -> str:
@@ -20,16 +16,9 @@ def clean_input(raw: str) -> str:
     return CLEAN_RE.sub('', raw)
 
 
-def build_alias_map(path):
-    """加载别名映射表。返回 (别名查找表, 全名集合)。"""
-    with open(path, "rb") as f:
-        data = tomllib.load(f)
-    alias_map = {}
-    fullnames = list(data.keys())
-    for fullname, aliases in data.items():
-        for alias in aliases:
-            alias_map.setdefault(alias.lower(), []).append(fullname)
-    return alias_map, set(fullnames)
+def build_alias_map():
+    """通过 common.py 加载别名映射和角色全集。"""
+    return load_alias_map(), set(fullnames())
 
 
 def resolve(input_str, amap, fnames):
@@ -106,7 +95,7 @@ if __name__ == "__main__":
     if cleaned != raw_input:
         print(f"[INFO] 输入已清洗: '{raw_input}' → '{cleaned}'", file=sys.stderr)
 
-    amap, fnames = build_alias_map(TOML_PATH)
+    amap, fnames = build_alias_map()
     names, debug_log, warns = resolve(cleaned, amap, fnames)
 
     # 输出警告（所有模式）

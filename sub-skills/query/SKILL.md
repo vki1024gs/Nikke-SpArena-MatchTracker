@@ -47,7 +47,7 @@ python3 sub-skills/query/query_output.py "<昵称串>" --assemble "<分析文本
 
 ## Pitfalls
 
-- **[META] 来源唯一**：分析必须来自 `query_output.py` 输出的 `[ANALYSIS_CONTEXT]`，**禁止 LLM 自行读取 `chara_list_pvp.toml`**
+- **[META] 来源唯一**：分析必须来自 `query_output.py` 输出的 `[ANALYSIS_CONTEXT]`，**禁止 LLM 自行读取 `characters_pvp.toml`**
 - **充能数据不重复判断**：充能表中若有 `(过快)` 标注，原样引用即可，不要改写或额外解释
 - **`--assemble` 参数需引号包裹**：分析文本含空格/标点时，必须用双引号包裹传入
 - **禁止直接调用内部子脚本**：`calc_team_charge.py` 和 `match_finder.py` 是 `query_output.py` 的专用内部组件，自带 env var 守卫，直接运行会 `sys.exit(1)`。仅调试时可用 `--debug` 绕过。零散脚本的存在是为了排查故障，不是正常流程的入口。

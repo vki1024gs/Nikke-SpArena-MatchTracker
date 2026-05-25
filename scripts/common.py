@@ -33,7 +33,18 @@ def chara_map():
 
 def charge_map():
     data = load_toml("charge_speed")
-    return {c["name"]: c for c in data["charge"]}
+    if "charge" in data:
+        return {c["name"]: c for c in data["charge"]}
+
+    result = {}
+    for c in data["characters"]:
+        item = {"name": c["name"], "weapon": c.get("weapon", "")}
+        for phase in phases():
+            key = f"charge_{phase}"
+            if key in c:
+                item[phase] = c[key]
+        result[c["name"]] = item
+    return result
 
 
 def alias_map():

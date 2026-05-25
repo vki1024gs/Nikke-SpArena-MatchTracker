@@ -66,16 +66,26 @@ category: gaming
 - 建议部分必须是**一段自然的话**，融入输出末尾。
 
 ### TOML 格式陷阱
-- **带 `+` 的充能值**：`charge_speed_pvp.toml` 中 `value = 28.4+` 在 TOML 内联表中非法，必须加引号：`value = "28.4+"`。
+- **带 `+` 的充能值**：`characters_pvp.toml` 的 `charge_*` 内联表中 `value = 28.4+` 非法，必须加引号：`value = "28.4+"`。
 - **充能表列为 2RL/50SMG/3RL**：50SMG=196帧，无 31AR 列。
 - **容器无 unzip**：用 Python `zipfile` 模块解压。
 
 ### 别名冲突处理
 - `诺` 同时映射到 诺雅/诺伊斯：单个`诺`→优先诺雅，`诺诺`连续→第一个诺伊斯第二个诺雅。
+- `白兔` → 布兰儿（别名库映射）
+- `lpls` → 拉普拉斯（别名库映射）
+
+### 数据文件维护陷阱
+- **`characters_pvp.toml` 必须定期审计**：本次发现"阿妮斯：闪耀夏日"的 `burst = "1"` 且 `weapon = ""` 为错误数据（实际应为 `burst = "3"`, `weapon = "SG"`）。武器字段为空会导致充能计算走默认值（通常错误），爆裂阶段错误会导致整条爆裂链逻辑崩盘。修改后必须重新跑查询验证。
+- **修改流程**：patch TOML → 跑一次查询验证充能/爆裂链合理 → git commit。
+
+### Git 提交流程陷阱
+- **`data/matches.toml` 被 `.gitignore` 忽略**：直接 `git add data/matches.toml` 会被拒。必须用 `git add -f data/matches.toml` 强制提交。这是因为 `.gitignore` 中包含 `data/` 规则（配合 `*.archive/` 使用），日常维护需要 force add。
 
 ### 写脚本前先问规则
 - 不要假设充能计算逻辑、公式、输出格式。用户有明确的游戏机制认知，必须先确认再写。
-- 数据替换后必须抽查验证：用 CSV 数据重建 TOML 后，挑几个角色去 CSV 里对照数值。
+- **数据替换后必须抽查验证**：用 CSV 数据重建 TOML 后，挑几个角色去 CSV 里对照数值。
+- **⚠️ TOML Weapon 数据完整性**：`characters_pvp.toml` 中每个角色的 `weapon` 字段**绝对不能留空** (`weapon = ""`)。若为空，充能计算脚本 (`calc_team_charge.py`) 会错误地默认为某类武器（如 SG），导致充能值严重虚高。录入新角色或新形态（如阿妮斯：闪耀夏日）时，首要检查就是补全 `weapon`。
 
 ---
 
@@ -93,7 +103,7 @@ category: gaming
 - 双爆裂 2 ≠ 能开 2 次爆裂。开爆裂的人由 `burst_chain_speed.py` 输出决定，禁止自行判断。
 
 ### suggest 子技能 — 机制核查
-- 只查脚本爆裂链中的 3 人。机制数据直接来自 `chara_list_pvp.toml` 的 `mechanics` 字段（格式为"机制：解释"）。
+- 只查脚本爆裂链中的 3 人。机制数据直接来自 `characters_pvp.toml` 的 `mechanics` 字段（格式为"机制：解释"）。
 - 核查结果融入为**一段自然的话**，不要列表，不要标题。若无机制，则不输出该段落。
 - 详见 [references/suggest.md](references/suggest.md)。
 

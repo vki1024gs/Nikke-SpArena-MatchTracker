@@ -1,7 +1,7 @@
 [paths]
-chara_list = "references/chara_list_pvp.toml"
-charge_speed = "references/charge_speed_pvp.toml"
-alias_mapping = "references/alias_mapping_pvp.toml"
+chara_list = "references/characters_pvp.toml"
+charge_speed = "references/characters_pvp.toml"
+alias_mapping = "sub-skills/alias_mapping/alias_mapping_pvp.toml"
 matches = "data/matches.toml"
 match_schema = "sub-skills/match_recorder/schema/match_schema.toml"
 
