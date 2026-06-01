@@ -42,10 +42,10 @@ def load_match_schema() -> dict:
         return tomllib.load(f)
 
 
-def resolve_matches_path(output: str | None = None) -> Path:
-    """返回对局文件路径；--output 仅用于调试覆盖 config。"""
+def resolve_matches_path() -> Path:
+    """返回 config 中定义的对局文件路径。"""
     cfg = load_config()
-    path = Path(output) if output else Path(cfg["paths"]["matches"])
+    path = Path(cfg["paths"]["matches"])
     return path if path.is_absolute() else ROOT / path
 
 
@@ -180,7 +180,7 @@ def main():
     parser.add_argument("--notes", default=fields.get("notes", {}).get("default"))
     parser.add_argument("--custom-def-tag", default=fields.get("custom_def_tag", {}).get("default"),
                         help="防守方私密标签")
-    parser.add_argument("--output", help="调试用：覆盖 config.toml 中的 matches 路径")
+    parser.add_argument("--dry-run", action="store_true", help="仅输出生成条目，不写入文件")
     args = parser.parse_args()
 
     pre_write_values = {
@@ -208,7 +208,7 @@ def main():
     print(f"[INFO] 解析进攻方: {args.attacker}", file=sys.stderr)
     attacker = resolve_team(args.attacker)
 
-    matches_path = resolve_matches_path(args.output)
+    matches_path = resolve_matches_path()
     entry = render_match(
         defender, attacker,
         result=args.result,
@@ -220,9 +220,12 @@ def main():
         matches_path=matches_path,
     )
 
-    with open(matches_path, "a", encoding="utf-8") as f:
-        f.write(entry)
-    print(f"[INFO] 已追加到: {matches_path}", file=sys.stderr)
+    if args.dry_run:
+        print("[INFO] dry-run: 未写入文件", file=sys.stderr)
+    else:
+        with open(matches_path, "a", encoding="utf-8") as f:
+            f.write(entry)
+        print(f"[INFO] 已追加到: {matches_path}", file=sys.stderr)
     
     # 无论是否写入文件，始终输出内容到 stdout
     print(entry, end="")

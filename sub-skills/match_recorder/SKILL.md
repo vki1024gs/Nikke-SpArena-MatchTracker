@@ -21,7 +21,8 @@ python3 sub-skills/match_recorder/match_recorder.py "<防守方昵称串>" "<进
     [--margin 值] \
     [--trust low|medium|high] \
     [--custom-def-tag "标签"] \
-    [--notes "备注"]
+    [--notes "备注"] \
+    [--dry-run]
 ```
 
 4. **验证**：运行 `python3 scripts/validate_record.py data/matches.toml`。若 FAIL，根据报错手动修正。
@@ -51,4 +52,4 @@ python3 sub-skills/match_recorder/match_recorder.py "<防守方昵称串>" "<进
 
 ## Pitfalls
 - **唯一数据源**：脚本默认读取 `config.toml` 的 `paths.matches`，并将新条目追加到该文件。
-- **`--output` 仅用于调试**：需要覆盖默认路径时可显式传入；相对路径仍以 skill 根目录为基准。
+- **`--dry-run` 仅用于调试**：完整生成条目并输出到 stdout，但不写入任何文件。
