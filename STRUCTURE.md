@@ -28,9 +28,7 @@ nikke-pvp/
 └── sub-skills/                       # 子技能
     ├── query/                        # 查询对局
     │   ├── SKILL.md                  # 三步流程：数据编排 → LLM分析 → 组装输出
-    │   ├── match_finder.py           # 历史对局匹配（人员重叠+爆裂链打分）
-    │   └── references/
-    │       └── output_format.md      # 输出格式审计说明
+    │   └── match_finder.py           # 历史对局匹配（人员重叠+爆裂链打分）
     │
     ├── match_recorder/               # 记录对局
     │   ├── SKILL.md                  # 流程：解析→校验→追加
