@@ -1,4 +1,6 @@
 """记录对局 — 将双方阵容和爆裂链写入 TOML 格式的 match 条目。"""
+from __future__ import annotations
+
 import argparse
 import sys
 from pathlib import Path
@@ -13,9 +15,6 @@ import alias_mapping
 from common import load_config, chara_map
 import calc_burst_chain as burst_logic
 
-VALID_SOURCES = {"论坛", "自建", "其他"}
-VALID_RESULTS = {"defender_win", "attacker_win"}
-
 
 def get_next_id(matches_path: Path) -> int:
     """读取 matches.toml 最后一条 id，+1 返回。"""
@@ -29,6 +28,33 @@ def get_next_id(matches_path: Path) -> int:
     if not matches:
         return 1
     return int(matches[-1]["id"]) + 1
+
+
+def load_match_schema() -> dict:
+    """读取 match schema。"""
+    cfg = load_config()
+    schema_path = ROOT / cfg["paths"]["match_schema"]
+    if sys.version_info >= (3, 11):
+        import tomllib
+    else:
+        import tomli as tomllib
+    with open(schema_path, "rb") as f:
+        return tomllib.load(f)
+
+
+def validate_pre_write(schema: dict, values: dict) -> list[str]:
+    """根据 schema 校验即将写入的字段。"""
+    issues = []
+    for fname, fdef in schema.get("fields", {}).items():
+        val = values.get(fname, fdef.get("default"))
+        if fdef.get("required") and val is None:
+            issues.append(f"{fname} 是必填字段")
+            continue
+        if val is None:
+            continue
+        if fdef.get("type") == "enum" and val not in fdef.get("enum_values", []):
+            issues.append(f"{fname} 值不合法: '{val}'（应为 {fdef['enum_values']}）")
+    return issues
 
 
 def resolve_team(nickname_str: str) -> list[str]:
@@ -83,15 +109,7 @@ def render_match(defender: list[str], attacker: list[str], *,
     """生成单个 match 条目的 TOML 文本（动态读取 schema）。"""
     cfg = load_config()
     _matches_path = matches_path if matches_path is not None else ROOT / cfg["paths"]["matches"]
-    schema_path = ROOT / cfg["paths"]["match_schema"]
-
-    # 读取 schema 字段定义，按 order 排序
-    if sys.version_info >= (3, 11):
-        import tomllib
-    else:
-        import tomli as tomllib
-    with open(schema_path, "rb") as f:
-        schema = tomllib.loads(f.read().decode("utf-8"))
+    schema = load_match_schema()
 
     fields = schema.get("fields", {})
     sorted_fields = sorted(
@@ -140,27 +158,43 @@ def render_match(defender: list[str], attacker: list[str], *,
 
 
 def main():
+    schema = load_match_schema()
+    fields = schema.get("fields", {})
+
+    def enum_help(field: str) -> str:
+        return " / ".join(fields.get(field, {}).get("enum_values", []))
+
     parser = argparse.ArgumentParser(description="记录对局")
     parser.add_argument("defender", help="防守方昵称串，逗号分隔")
     parser.add_argument("attacker", help="进攻方昵称串，逗号分隔")
-    parser.add_argument("--result", default=None, help="必填: defender_win / attacker_win")
-    parser.add_argument("--margin", default="unknown")
-    parser.add_argument("--source", default=None, help="必填: 论坛 / 自建 / 其他")
-    parser.add_argument("--trust", default="medium")
-    parser.add_argument("--notes", default="")
-    parser.add_argument("--custom-def-tag", default="", help="防守方私密标签")
+    parser.add_argument("--result", default=None, help=f"必填: {enum_help('result')}")
+    parser.add_argument("--margin", default=fields.get("margin", {}).get("default"))
+    parser.add_argument("--source", default=None, help=f"必填: {enum_help('source')}")
+    parser.add_argument("--trust", default=fields.get("trust", {}).get("default"))
+    parser.add_argument("--notes", default=fields.get("notes", {}).get("default"))
+    parser.add_argument("--custom-def-tag", default=fields.get("custom_def_tag", {}).get("default"),
+                        help="防守方私密标签")
     parser.add_argument("--output", help="输出文件路径（默认 stdout）")
     args = parser.parse_args()
 
-    # 必填校验
-    missing = []
-    if not args.result:
-        missing.append("result (defender_win / attacker_win)")
-    if not args.source:
-        missing.append("source (论坛 / 自建 / 其他)")
-    if missing:
-        for m in missing:
-            print(f"[ERROR] {m} 是必填字段", file=sys.stderr)
+    pre_write_values = {
+        "id": "<generated>",
+        "date": "<generated>",
+        "source": args.source,
+        "defender_team": args.defender,
+        "attacker_team": args.attacker,
+        "defender_burst": "<generated>",
+        "attacker_burst": "<generated>",
+        "result": args.result,
+        "margin": args.margin,
+        "trust": args.trust,
+        "custom_def_tag": args.custom_def_tag,
+        "notes": args.notes,
+    }
+    issues = validate_pre_write(schema, pre_write_values)
+    if issues:
+        for issue in issues:
+            print(f"[ERROR] {issue}", file=sys.stderr)
         sys.exit(1)
 
     print(f"[INFO] 解析防守方: {args.defender}", file=sys.stderr)

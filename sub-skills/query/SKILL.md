@@ -30,6 +30,17 @@ python3 sub-skills/query/query_output.py "<昵称串>"
 python3 sub-skills/query/query_output.py "<昵称串>" --assemble "<分析文本>"
 ```
 
+## 内部子脚本
+
+`query_output.py` 是唯一入口，内部依次调用以下脚本：
+
+| 子脚本 | 职责 |
+|---|---|
+| `alias_mapping.py` | 将昵称串解析为 5 人全名。 |
+| `calc_burst_chain.py` | 计算爆裂顺序并提取角色机制。 |
+| `calc_team_charge.py` | 生成全队充能明细表。 |
+| `match_finder.py` | 匹配历史对局并生成推荐结果。 |
+
 ## 执行约束
 
 - 分析必须来自 `[ANALYSIS_CONTEXT]`，禁止自行读取角色数据或凭记忆补充。
