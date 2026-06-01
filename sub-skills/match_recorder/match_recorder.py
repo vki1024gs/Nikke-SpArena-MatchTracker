@@ -163,6 +163,22 @@ def render_match(defender: list[str], attacker: list[str], *,
     return "\n".join(lines) + "\n"
 
 
+def append_match(matches_path: Path, entry: str) -> None:
+    """追加条目，并保证与上一条记录之间保留一个空白行。"""
+    existing = matches_path.read_text(encoding="utf-8")
+    if not existing:
+        separator = ""
+    elif existing.endswith("\n\n"):
+        separator = ""
+    elif existing.endswith("\n"):
+        separator = "\n"
+    else:
+        separator = "\n\n"
+
+    with open(matches_path, "a", encoding="utf-8") as f:
+        f.write(separator + entry)
+
+
 def main():
     schema = load_match_schema()
     fields = schema.get("fields", {})
@@ -223,8 +239,7 @@ def main():
     if args.dry_run:
         print("[INFO] dry-run: 未写入文件", file=sys.stderr)
     else:
-        with open(matches_path, "a", encoding="utf-8") as f:
-            f.write(entry)
+        append_match(matches_path, entry)
         print(f"[INFO] 已追加到: {matches_path}", file=sys.stderr)
     
     # 无论是否写入文件，始终输出内容到 stdout
