@@ -6,7 +6,11 @@ description: 查询历史对局 — LLM 仅负责撰写 70 字分析，其余全
 # 查询对局
 
 ## 输入
-用户提供队伍简写（如 `娜海emt帽lpls`）。
+用户提供队伍简写昵称串（如 `娜海emt帽lpls`）。
+
+## 交互约束
+
+**静默执行**：收到查询后直接完成三步调用流程。禁止播报执行进度、脚本调用过程或 `[ANALYSIS_CONTEXT]`；成功时仅输出 Step 3 的最终组装结果。仅在执行失败或需要用户补充信息时，简短说明原因。
 
 ### 三步调用流程
 
@@ -53,5 +57,5 @@ python3 sub-skills/query/query_output.py "<昵称串>" --assemble "<分析文本
 - **禁止直接调用内部子脚本**：`calc_team_charge.py` 和 `match_finder.py` 是 `query_output.py` 的专用内部组件，自带 env var 守卫，直接运行会 `sys.exit(1)`。仅调试时可用 `--debug` 绕过。零散脚本的存在是为了排查故障，不是正常流程的入口。
 - **板块标题固定**：`查询结果`、`充能计算`、`历史对局`、`队伍分析`。标题变更需同步更新 `SEP_*` 常量
 - **历史对局术语汉化（query_output.py `translate_history_terms`）**：`margin: decisive`→`完胜`，`margin: close`→`险胜`，`notes:`→`备注:`
-- **禁止跳过三步流程**：用户查询必须严格执行 Step 1 → Step 2 → Step 3（`--assemble`），禁止省略任何步骤或凭记忆输出结果。（2026-05-12）
+- **禁止跳过三步流程**：用户查询必须严格执行 Step 1 → Step 2 → Step 3（`--assemble`），禁止省略任何步骤或凭记忆输出结果。
 - **禁止 LLM 压缩数据板块**：充能明细表、历史对局等必须原样输出脚本结果，不得精简或复述。

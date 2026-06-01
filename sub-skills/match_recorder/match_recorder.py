@@ -79,10 +79,10 @@ def to_toml_table(key: str, data: dict) -> str:
 def render_match(defender: list[str], attacker: list[str], *,
                  result: str, margin: str, source: str,
                  trust: str, custom_def_tag: str,
-                 notes: str) -> str:
+                 notes: str, matches_path: Path | None = None) -> str:
     """生成单个 match 条目的 TOML 文本（动态读取 schema）。"""
     cfg = load_config()
-    matches_path = ROOT / cfg["paths"]["matches"]
+    _matches_path = matches_path if matches_path is not None else ROOT / cfg["paths"]["matches"]
     schema_path = ROOT / cfg["paths"]["match_schema"]
 
     # 读取 schema 字段定义，按 order 排序
@@ -99,7 +99,7 @@ def render_match(defender: list[str], attacker: list[str], *,
         key=lambda x: x[1].get("order", 999)
     )
 
-    next_id = get_next_id(matches_path)
+    next_id = get_next_id(_matches_path)
     def_burst = build_burst_map(defender)
     att_burst = build_burst_map(attacker)
 
@@ -176,6 +176,7 @@ def main():
         trust=args.trust,
         custom_def_tag=args.custom_def_tag,
         notes=args.notes,
+        matches_path=Path(args.output) if args.output else None,
     )
 
     if args.output:

@@ -8,16 +8,16 @@ category: gaming
 
 ## 职责
 
-主 skill 只负责 **分派子技能** 与 **验证子技能的输出结果**。具体实现细节见 `PITFALLS.md`。
+主 skill 只负责 **分派子技能** 与 **验证子技能的输出结果**。
 
 ## 子技能
 
 | 子技能 | 职责 |
 |---|---|
-| `query` | 查询历史对局 — LLM 仅写 70 字分析，Python（`query_output.py`）编排全部数据板块。三步调用：先跑脚本获取 `[ANALYSIS_CONTEXT]`，LLM 生成分析后 `--assemble` 组装最终结果。详见 `sub-skills/query/SKILL.md`。 |
+| `query` | 查询历史对局。详见 `sub-skills/query/SKILL.md`。 |
 | `match-recorder` | 记录新对局 — 非结构化文本解析为结构化 TOML 条目。 |
 | `alias_mapping` | 角色昵称解析。 |
-| `match-maintain` | 数据表维护。 |
+
 
 ## 编排脚本
 
@@ -49,6 +49,19 @@ category: gaming
 ## 维护日志
 
 - **[2026-05-11] validate_record.py 修复**：脚本中 `tomllib.load(f.read()...)` 报错（AttributeError: 'str' object has no attribute 'read'），已修正为 `tomllib.loads(f.read()...)`。
+
+## match_recorder.py CLI 用法
+
+```bash
+python3 sub-skills/match_recorder/match_recorder.py \
+  "防守方全名, 逗号分隔" \
+  "进攻方全名, 逗号分隔" \
+  --source "自建" \
+  --result "attacker_win" \
+  --output data/matches.toml
+```
+
+**注意**：`defender` 和 `attacker` 是**位置参数**，不是 `--defender`/`--attacker`。`--result` 必填，值为 `defender_win` 或 `attacker_win`（非中文）。运行后必须执行 `validate_record.py` 校验。
 
 ## Pitfall 参考
 
@@ -86,6 +99,9 @@ category: gaming
 - 不要假设充能计算逻辑、公式、输出格式。用户有明确的游戏机制认知，必须先确认再写。
 - **数据替换后必须抽查验证**：用 CSV 数据重建 TOML 后，挑几个角色去 CSV 里对照数值。
 - **⚠️ TOML Weapon 数据完整性**：`characters_pvp.toml` 中每个角色的 `weapon` 字段**绝对不能留空** (`weapon = ""`)。若为空，充能计算脚本 (`calc_team_charge.py`) 会错误地默认为某类武器（如 SG），导致充能值严重虚高。录入新角色或新形态（如阿妮斯：闪耀夏日）时，首要检查就是补全 `weapon`。
+
+- **⚠️ match_recorder.py --output 路径一致性 (2026-05-25)**：`render_match()` 中 `get_next_id()` 读取的是 `config.toml` 配置的默认 `matches` 路径，而非 `--output` 传入的路径。当两者指向不同文件时（如默认路径最后 ID=0033，workspace 路径最后 ID=0035），连续两次运行都会读到 0033 → 都生成 0034 → 追加到同一个输出文件 → 重复 ID。**已修复**：`render_match()` 新增 `matches_path` 参数，`main()` 在调用时传入 `Path(args.output)` 确保读取和写入同一路径。
+- **⚠️ 唯一数据源规则 (2026-05-25)**：全项目只能有**一份** `matches.toml`，位于 skill 目录 `/opt/data/skills/nikke-pvp/data/matches.toml`。workspace 目录下的冗余副本会导致 ID 冲突和数据分叉，发现后必须删除或归档。合并原则：保留条目数更多的版本，追加缺失记录后删除冗余副本。
 
 ---
 
