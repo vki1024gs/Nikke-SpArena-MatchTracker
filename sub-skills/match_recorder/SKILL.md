@@ -18,7 +18,6 @@ description: 记录新对局 — 非结构化文本解析为结构化 TOML 条�
 python3 sub-skills/match_recorder/match_recorder.py "<防守方昵称串>" "<进攻方昵称串>" \
     --result defender_win|attacker_win \
     --source 论坛|自建|其他 \
-    --output data/matches.toml \
     [--margin 值] \
     [--trust low|medium|high] \
     [--custom-def-tag "标签"] \
@@ -51,4 +50,5 @@ python3 sub-skills/match_recorder/match_recorder.py "<防守方昵称串>" "<进
 字段定义以 `sub-skills/match_recorder/schema/match_schema.toml` 为唯一权威来源。
 
 ## Pitfalls
-- **目标文件必须存在**：脚本从 `--output` 指定的目标文件读取最大 ID，再追加新条目。
+- **唯一数据源**：脚本默认读取 `config.toml` 的 `paths.matches`，并将新条目追加到该文件。
+- **`--output` 仅用于调试**：需要覆盖默认路径时可显式传入；相对路径仍以 skill 根目录为基准。

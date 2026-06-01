@@ -42,6 +42,13 @@ def load_match_schema() -> dict:
         return tomllib.load(f)
 
 
+def resolve_matches_path(output: str | None = None) -> Path:
+    """返回对局文件路径；--output 仅用于调试覆盖 config。"""
+    cfg = load_config()
+    path = Path(output) if output else Path(cfg["paths"]["matches"])
+    return path if path.is_absolute() else ROOT / path
+
+
 def validate_pre_write(schema: dict, values: dict) -> list[str]:
     """根据 schema 校验即将写入的字段。"""
     issues = []
@@ -107,8 +114,7 @@ def render_match(defender: list[str], attacker: list[str], *,
                  trust: str, custom_def_tag: str,
                  notes: str, matches_path: Path | None = None) -> str:
     """生成单个 match 条目的 TOML 文本（动态读取 schema）。"""
-    cfg = load_config()
-    _matches_path = matches_path if matches_path is not None else ROOT / cfg["paths"]["matches"]
+    _matches_path = matches_path if matches_path is not None else resolve_matches_path()
     schema = load_match_schema()
 
     fields = schema.get("fields", {})
@@ -174,7 +180,7 @@ def main():
     parser.add_argument("--notes", default=fields.get("notes", {}).get("default"))
     parser.add_argument("--custom-def-tag", default=fields.get("custom_def_tag", {}).get("default"),
                         help="防守方私密标签")
-    parser.add_argument("--output", help="输出文件路径（默认 stdout）")
+    parser.add_argument("--output", help="调试用：覆盖 config.toml 中的 matches 路径")
     args = parser.parse_args()
 
     pre_write_values = {
@@ -202,6 +208,7 @@ def main():
     print(f"[INFO] 解析进攻方: {args.attacker}", file=sys.stderr)
     attacker = resolve_team(args.attacker)
 
+    matches_path = resolve_matches_path(args.output)
     entry = render_match(
         defender, attacker,
         result=args.result,
@@ -210,13 +217,12 @@ def main():
         trust=args.trust,
         custom_def_tag=args.custom_def_tag,
         notes=args.notes,
-        matches_path=Path(args.output) if args.output else None,
+        matches_path=matches_path,
     )
 
-    if args.output:
-        with open(args.output, "a", encoding="utf-8") as f:
-            f.write(entry)
-        print(f"[INFO] 已追加到: {args.output}", file=sys.stderr)
+    with open(matches_path, "a", encoding="utf-8") as f:
+        f.write(entry)
+    print(f"[INFO] 已追加到: {matches_path}", file=sys.stderr)
     
     # 无论是否写入文件，始终输出内容到 stdout
     print(entry, end="")
