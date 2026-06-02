@@ -20,8 +20,8 @@ python3 sub-skills/match_recorder/match_recorder.py "<防守方昵称串>" "<进
     --source 论坛|自建|其他 \
     [--margin 值] \
     [--trust low|medium|high] \
-    [--custom-def-tag "标签"] \
-    [--notes "备注"] \
+    [--custom-def-tag "防守标签"] \
+    [--notes "对局备注"] \
     [--dry-run]
 ```
 
@@ -32,15 +32,15 @@ python3 sub-skills/match_recorder/match_recorder.py "<防守方昵称串>" "<进
 
 | 用户说法 | CLI 参数 | 说明 |
 |----------|----------|------|
-| 防守赢 / 攻守失败 / 守胜 | `--result defender_win` | 防守方胜利 |
+| 防守赢 / 攻击失败 / 守胜 | `--result defender_win` | 防守方胜利 |
 | 进攻赢 / 攻击胜 / 防守输 | `--result attacker_win` | 进攻方胜利 |
-| 来源论坛 | `--source 论坛` | 必填 |
-| 来源自建 | `--source 自建` | 必填 |
-| 来源其他 | `--source 其他` | 必填 |
-| margin close / easy / 胶着 等 | `--margin 值` | 可选 |
-| trust low / medium / high | `--trust 值` | 可选，默认 medium |
-| 私密标签 | `--custom-def-tag "内容"` | 可选，默认空 |
-| 备注说明 | `--notes "内容"` | 可选 |
+| 来源 | `--source 论坛\|自建\|其他` | 必填 |
+| 胶着 / 险胜 | `--margin close` | 可选 |
+| 轻松 / 碾压 / 完胜 | `--margin decisive` | 可选 |
+| 未说明胜负程度 | 省略 `--margin` | 默认 `unknown` |
+| 可信度 | `--trust low\|medium\|high` | 可选，默认 `medium` |
+| 防守标签 | `--custom-def-tag "防守标签"` | 可选，默认空 |
+| 对局备注 | `--notes "对局备注"` | 可选 |
 
 ## 必填字段
 - `result`：必须由 LLM 从用户文本判断，无法推断时询问用户
